@@ -5,31 +5,36 @@ Some documentation to support a quick and easy setup of a Raspberry Pi print ser
 ### Basic Setup
 1. Install Raspbian OS on a Raspberry Pi. I used the Raspberry Pi Imager to install the OS on a 32GB microSD card. link: https://www.raspberrypi.org/software/. Make sure to enable SSH, set up the WiFi connection and configure a user in the Raspberry Pi Imager settings.
 
-2. (Optional) Update the Raspberry Pi OS. Run the following commands in the terminal:
+2. Power on the Raspberry Pi and connect to it using SSH. Run the following command in the terminal:
+```bash
+ssh pi@<raspberrypi_ip>
+```
+
+3. (Optional) Update the Raspberry Pi OS. Run the following commands in the terminal:
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
-3. Cups should come preinstalled with recent images. If it does not install the CUPS print server and avahi daemon. Run the following command in the terminal:
+4. Cups should come preinstalled with recent images. If it does not install the CUPS print server and avahi daemon. Run the following command in the terminal:
 ```bash
 sudo apt-get install cups avahi-daemon
 ```
 
-4. Add the user to the lpadmin group. Run the following command in the terminal:
+5. Add the user to the lpadmin group. Run the following command in the terminal:
 ```bash
 sudo usermod -a -G lpadmin pi
 ```
 
 (if you are not using the default user, replace pi with the username you are using)
 
-5. Configure CUPS to allow remote access. Edit the cupsd.conf file. Run the following command in the terminal:
+6. Configure CUPS to allow remote access. Edit the cupsd.conf file. Run the following command in the terminal:
 ```bash
 sudo cupsctl --remote-any
 sudo systemctl restart cups
 ```
 
-6. Open a web browser and navigate to the CUPS web interface. Enter the following address in the address bar:
+7. Open a web browser and navigate to the CUPS web interface. Enter the following address in the address bar:
 ```bash
 http://<raspberrypi_ip>:631
 ```
